@@ -1,0 +1,10 @@
+Flask==2.0.3
+SQLAlchemy==1.4.54
+pyodbc==4.0.39
+Ariadne==0.16.0
+bcrypt==3.2.0
+PyJWT==2.4.0
+python-dotenv==0.20.0
+pytest==7.0.1
+setuptools==39.0.1
+
