@@ -1,10 +1,24 @@
+# base tools
+pip >= 21.3.1
+wheel>=0.37.1
+setuptools>=59.6.0
+
+# Flask structure
 Flask==2.0.3
+python-dotenv==0.20.0
+
+# Database
 SQLAlchemy==1.4.54
 pyodbc==4.0.39
+
+# GraphQL
+ariadne==0.16.0
+graphql-core==3.2.6
+
+# Test tools
+pytest==7.0.1
+
+# other tools
 Ariadne==0.16.0
 bcrypt==3.2.0
 PyJWT==2.4.0
-python-dotenv==0.20.0
-pytest==7.0.1
-setuptools==39.0.1
-
