@@ -6,5 +6,7 @@ install library
 
 1. launch python venv
   python3 -m venv venv
+  cd to execute folder
+  source venv/bin/activate
 2. install require library
   pip install -r requirements.txt
