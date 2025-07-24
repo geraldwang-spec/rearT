@@ -12,12 +12,12 @@ def create_app():
     app.config.from_object(Config)
     db.init_app(app)
 
-    with app.app_context():
-        from . import auth, schema, routes
-        app.register_blueprint(auth.bp)
-        app.register_blueprint(routes.bp)
-        # schema 會在後面用
+    # with app.app_context():
+    #     from . import auth, schema, routes
+    #     app.register_blueprint(auth.bp)
+    #     app.register_blueprint(routes.bp)
+    #     # schema 會在後面用
 
-        db.create_all()
+    #     db.create_all()
 
     return app
