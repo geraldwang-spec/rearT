@@ -2,6 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from config import Config
 from dotenv import load_dotenv
+from app.models.StationClass import StationClass
 
 load_dotenv()
 
@@ -19,5 +20,11 @@ def create_app():
     #     # schema 會在後面用
 
     #     db.create_all()
+
+    @app.route('/')
+    def index():
+        staiton = StationClass()
+        staiton.test1()
+        return 'Flask is running through Apach'
 
     return app
