@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from config import Config
 from dotenv import load_dotenv
 from app.models.StationClass import StationClass
+# from app.api import bp as api_bp
 
 load_dotenv()
 
@@ -11,6 +12,9 @@ db = SQLAlchemy()
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
+    from app.api import routes
+    from app.api import bp as api_bp
+    app.register_blueprint(api_bp, url_prefix='/api')
     db.init_app(app)
 
     # with app.app_context():
@@ -21,10 +25,12 @@ def create_app():
 
     #     db.create_all()
 
-    @app.route('/')
-    def index():
-        staiton = StationClass()
-        staiton.test1()
-        return 'Flask is running through Apach'
+    # @app.route('/')
+    # def index():
+    #     return 'Flask is running through Apach'
+
+    # @app.route('/api')
+    # def indexApi():
+    #     return 'testapi'
 
     return app
