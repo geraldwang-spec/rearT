@@ -1,8 +1,19 @@
 from app.api import bp
-from flask import current_app, jsonify, render_template, url_for, redirect
+from flask import current_app, jsonify, render_template, send_from_directory, url_for, redirect
 from flask import request
 from flask import render_template
 from flask import flash
+
+@bp.route('/test/flutter')
+def serve_index():
+    print("current_app.static_folder = "+ current_app.static_folder)
+    return send_from_directory(current_app.static_folder, 'index.html')
+
+@bp.route('/static/<path:filename>')
+def serve_static(filename):
+    print(f"Serving static file: {filename}")
+    return send_from_directory(current_app.static_folder, filename)
+
 
 @bp.route('/test')
 def test():
@@ -68,14 +79,15 @@ def login_switch():
 
     return render_template('login.html')
 
-@bp.route('/test/login_hello')
+@bp.route('/test/login_hello', methods=['GET', 'POST'])
 def login_hello():
     if request.method == 'POST':
         if(login_check(request.form['username'], request.form['password'])):
             flash('Login Success!')
             return render_template('hello.html', username=request.form.get('username'))
+
     print('login_hello')
-    return render_template('login.html')
+    return render_template('login_user.html')
 
 def login_check(username, password):
     if username == 'admin' and password == 'hello':

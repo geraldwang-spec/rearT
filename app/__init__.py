@@ -1,5 +1,6 @@
 import os
 from flask import Flask
+from flask import send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from config import Config
 from dotenv import load_dotenv
@@ -10,8 +11,15 @@ load_dotenv()
 
 db = SQLAlchemy()
 
+
 def create_app():
-    app = Flask(__name__, template_folder=os.path.join(os.path.dirname(__file__), '../templates'))
+    rootdir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+    print("rootdir = " + rootdir)
+    app = Flask(__name__, 
+                # static_folder="static",
+                static_folder = os.path.join(rootdir, "static"),
+                static_url_path="/static",
+                template_folder=os.path.join(os.path.dirname(__file__), '../templates'))
     app.config.from_object(Config)
     from app.api import routes
     from app.api import bp as api_bp
